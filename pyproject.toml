@@ -1,10 +1,12 @@
-
 [tool.poetry]
-name = "financially-free-task"
+name = "dashboard"
 version = "0.1.0"
 description = "Investor-focused vehicle registration analytics dashboard."
 authors = ["krVatsal <your-email@example.com>"]
 readme = "README.md"
+packages = [
+    { include = "dashboard" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
@@ -18,9 +20,3 @@ numpy = "*"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.packages]
-include = [
-	{ include = "financially_free_task" },
-	{ include = "dashboard" }
-]

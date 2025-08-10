@@ -20,11 +20,15 @@ def query_data(db_path, query):
 
 if __name__ == "__main__":
     base = os.path.dirname(__file__)
+    db_path = os.path.join(base, 'vehicle_data.db')
     # Four wheeler
     csv_path_4w = os.path.join(base, 'four_wheeler_data.csv')
-    db_path = os.path.join(base, 'vehicle_data.db')
     load_csv_to_sqlite(csv_path_4w, db_path, 'four_wheeler')
     # Three wheeler
     csv_path_3w = os.path.join(base, 'three_wheeler_data.csv')
     load_csv_to_sqlite(csv_path_3w, db_path, 'three_wheeler')
+    # Two wheeler
+    csv_path_2w = os.path.join(base, 'two_wheeler_data.csv')
+    if os.path.exists(csv_path_2w):
+        load_csv_to_sqlite(csv_path_2w, db_path, 'two_wheeler')
     print('CSVs loaded to SQLite DB.')

@@ -7,7 +7,7 @@ from db_utils import create_connection, load_csv_to_sqlite
 import plotly.express as px
 
 st.set_page_config(page_title="Vehicle Registration Investor Dashboard", layout="wide")
-st.title("🚗 Vehicle Registration Dashboard (Investor Edition)")
+st.title("Vehicle Registration Dashboard (Investor Edition)")
 st.markdown("""
 <div style='font-size:18px; color:#444;'>
 A professional, investor-focused dashboard for India's vehicle registration trends. Use the controls to analyze Four, Three, and (soon) Two Wheeler data for growth, resilience, and market opportunities.

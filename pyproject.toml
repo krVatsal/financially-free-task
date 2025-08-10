@@ -1,7 +1,26 @@
-[project]
+
+[tool.poetry]
 name = "financially-free-task"
 version = "0.1.0"
-description = "Add your description here"
+description = "Investor-focused vehicle registration analytics dashboard."
+authors = ["krVatsal <your-email@example.com>"]
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+pandas = "*"
+streamlit = "*"
+plotly = "*"
+numpy = "*"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.packages]
+include = [
+	{ include = "financially_free_task" },
+	{ include = "dashboard" }
+]

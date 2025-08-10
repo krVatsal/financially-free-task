@@ -1,46 +1,89 @@
-# Dashboard Project: Vehicle Registration Data (Investor View)
+
+# Financially Free Task: Vehicle Registration Investor Dashboard
+
+**Live Demo:** [Streamlit Deployed App](https://krvatsal-financially-free-task-dashboardapp-es8fca.streamlit.app/)
+
+## Project Overview
+
+This project provides a professional, investor-focused dashboard for analyzing India's vehicle registration data (from the Vahan Dashboard). It enables deep-dive analytics into Four Wheeler, Three Wheeler, and Two Wheeler segments, with advanced growth metrics, filtering, and visualizations tailored for market research and investment analysis.
+
+**Key Features:**
+- Unified dashboard for Four, Three, and Two Wheeler data
+- Year-over-Year (YoY) and Quarter-over-Quarter (QoQ) growth analytics
+- Dynamic filters for year and vehicle class
+- Cumulative (Till date) handling for accurate investor metrics
+- Interactive charts (trend, share, growth, pivot tables)
+- Downloadable filtered data
+- Extensible for new vehicle types and metrics
 
 ## Setup Instructions
 
-1. **Install dependencies:**
-   - Python 3.8+
-   - Install required packages:
-     ```bash
-     pip install streamlit pandas openpyxl
-     ```
+### 1. Clone the repository
+```bash
+git clone https://github.com/krVatsal/financially-free-task.git
+cd financially-free-task
+```
 
-2. **Run the dashboard:**
-   ```bash
-   streamlit run dashboard/app.py
-   ```
+### 2. Install dependencies (recommended: Poetry)
+If you don't have Poetry:
+```bash
+pip install poetry
+```
+Then install all dependencies:
+```bash
+poetry install
+```
 
-3. **Upload Data:**
-   - Use the sidebar to upload a Vahan Dashboard data file (CSV or Excel).
-   - The file should have columns: `date`, `vehicle_category`, `manufacturer`, `registrations` (case-insensitive).
+Or, using pip (not recommended for development):
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Prepare the database
+The dashboard uses SQLite for fast analytics. To load the data:
+```bash
+cd dashboard
+python db_utils.py
+```
+This will import all CSVs (four_wheeler_data.csv, three_wheeler_data.csv, two_wheeler_data.csv) into `vehicle_data.db`.
+
+### 4. Run the dashboard
+```bash
+streamlit run dashboard/app.py
+```
+Or, if using Poetry:
+```bash
+poetry run streamlit run dashboard/app.py
+```
+
 
 ## Data Assumptions
-- The uploaded data contains at least: `date`, `vehicle_category`, `manufacturer`, `registrations`.
-- Dates are in a standard format (YYYY-MM-DD preferred).
-- Data is at least monthly granularity.
+- Data is stored in CSVs: `four_wheeler_data.csv`, `three_wheeler_data.csv`, `two_wheeler_data.csv` (in the `dashboard/` folder)
+- Each file must have columns: `Year`, `Vehicle Class`, and segment-specific columns (e.g., `2WIC`, `2WN`, `2WT`, `TOTAL` for two-wheelers)
+- The dashboard expects the column names to match exactly (case-sensitive)
+- The 'Year' column can include 'Till date' for cumulative data, which is handled specially in analytics
+- Data should be annual (one row per vehicle class per year)
+- No missing values in key columns (`Year`, `Vehicle Class`, `TOTAL`)
 
 ## Feature Roadmap
-- [x] YoY and QoQ growth by category and manufacturer
-- [x] Date range, category, and manufacturer filters
-- [x] Trend graphs and % change
+- [x] Unified dashboard for Four, Three, and Two Wheeler data
+- [x] YoY and QoQ growth analytics
+- [x] Dynamic filters for year and vehicle class
+- [x] Cumulative (Till date) handling
+- [x] Interactive charts and pivot tables
+- [x] Downloadable filtered data
+- [x] SQLite backend for fast analytics
 - [ ] Automated data scraping from Vahan Dashboard
-- [ ] Export graphs/tables
-- [ ] More advanced investor analytics
+- [ ] More advanced investor analytics (e.g., risk metrics, market share trends)
+- [ ] User authentication for private dashboards
 
-## Data Collection/Scraping
-- If data is not directly downloadable, use Python (e.g., `requests`, `BeautifulSoup`) to scrape the Vahan Dashboard. Document the script and steps in a separate file.
+## Extending the Dashboard
+- To add a new vehicle type, add a new CSV in the same format and update the `table_map` in `app.py`
+- Metrics and visuals are dynamic and will adapt to new vehicle types
 
-## Video Walkthrough
-- Record a short (max 5 min) screen recording explaining:
-  - What you built
-  - How to use the dashboard
-  - Key investor insights
-- Upload to YouTube (unlisted) or Google Drive and share the link in your submission.
+## Deployed App
+You can try the dashboard live here: [Streamlit Deployed App](https://krvatsal-financially-free-task-dashboardapp-es8fca.streamlit.app/)
 
 ---
 
-For questions or improvements, see the `Feature Roadmap` above or open an issue.
+For questions, improvements, or feature requests, please open an issue.
